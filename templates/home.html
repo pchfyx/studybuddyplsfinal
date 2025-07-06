@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Study Buddy{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Study Buddy</h1>
+        <p>Connect with classmates, share resources, and learn together!</p>
+        {% if not current_user.is_authenticated %}
+        <div class="cta-buttons">
+            <a href="{{ url_for('auth.register') }}" class="btn primary">Sign Up</a>
+            <a href="{{ url_for('auth.login') }}" class="btn secondary">Login</a>
+        </div>
+        {% else %}
+        <div class="cta-buttons">
+            <a href="{{ url_for('groups.all_groups') }}" class="btn primary">My Groups</a>
+            <a href="{{ url_for('groups.create_group') }}" class="btn secondary">Create Group</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature">
+        <h2>Create Study Groups</h2>
+        <p>Form groups around courses, topics, or projects</p>
+    </div>
+    <div class="feature">
+        <h2>Share Materials</h2>
+        <p>Upload and access notes, documents, and resources</p>
+    </div>
+    <div class="feature">
+        <h2>Collaborate</h2>
+        <p>Discuss topics and learn together</p>
+    </div>
+</section>
+{% endblock %}
